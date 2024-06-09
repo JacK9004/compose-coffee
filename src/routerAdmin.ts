@@ -1,12 +1,17 @@
 import express from "express";
+const routerAdmin = express.Router();
 import coffeeController from "./controllers/coffee.controller";
-const router = express.Router();
 
+/** Restaurant */
+routerAdmin.get("/", coffeeController.goHome);
+routerAdmin
+    .get("/login", coffeeController.getLogin)
+    .post("/login", coffeeController.processLogin);
+routerAdmin
+    .get("/signup", coffeeController.getSignup)
+    .post("/signup", coffeeController.processSignup);
 
-router.get("/", coffeeController.goHome);
-
-router.get("/login", coffeeController.getLogin);
-
-router.get("/signup", coffeeController.getSignup);
-
-export default router;
+/** Product */
+/** User */
+  
+export default routerAdmin;
