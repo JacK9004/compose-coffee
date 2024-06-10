@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
+import { MemberInput } from "../libs/types/member";
+import { MemberType } from "../libs/enums/member.enum";
 
 const coffeeController: T = {};
 coffeeController.goHome = (req: Request, res: Response) => {
@@ -40,14 +42,22 @@ coffeeController.processLogin = (req: Request, res: Response) => {
     }
 };
 
-coffeeController.processSignup = (req: Request, res: Response) => {
+coffeeController.processSignup = async (req: Request, res: Response) => {
     try {
         console.log("processSignup");
-        res.send("DONE")
+        // console.log("body", req.body);
+
+        const newMember: MemberInput = req.body;
+        newMember.memberType =  MemberType.COFFEE;
+
+        const memberService = new MemberService();
+        const result = await memberService.processSignup(newMember);
+
+        res.send(result);
     } catch (err) {
         console.log("ERROR, processSingup:", err);
+        res.send(err);
     }
 };
-
 
 export default coffeeController;
