@@ -15,6 +15,15 @@ coffeeController.goHome = (req: Request, res: Response) => {
     }
 };
 
+coffeeController.getSignup = (req: Request, res: Response) => {
+    try {
+        console.log("Signup Page");
+        res.send("Signup Page");
+    } catch (err) {
+        console.log("ERROR, getSignup:", err);
+    }
+};
+
 coffeeController.getLogin = (req: Request, res: Response) => {
     try {
         console.log("Login Page");
@@ -24,12 +33,22 @@ coffeeController.getLogin = (req: Request, res: Response) => {
     }
 };
 
-coffeeController.getSignup = (req: Request, res: Response) => {
+
+coffeeController.processSignup = async (req: Request, res: Response) => {
     try {
-        console.log("Signup Page");
-        res.send("Signup Page");
+        console.log("processSignup");
+        // console.log("body", req.body);
+
+        const newMember: MemberInput = req.body;
+        newMember.memberType =  MemberType.COFFEE;
+
+        const memberService = new MemberService();
+        const result = await memberService.processSignup(newMember);
+
+        res.send(result);
     } catch (err) {
-        console.log("ERROR, getSignup:", err);
+        console.log("ERROR, processSingup:", err);
+        res.send(err);
     }
 };
 
@@ -50,22 +69,5 @@ coffeeController.processLogin = async (req: Request, res: Response) => {
     }
 };
 
-coffeeController.processSignup = async (req: Request, res: Response) => {
-    try {
-        console.log("processSignup");
-        // console.log("body", req.body);
-
-        const newMember: MemberInput = req.body;
-        newMember.memberType =  MemberType.COFFEE;
-
-        const memberService = new MemberService();
-        const result = await memberService.processSignup(newMember);
-
-        res.send(result);
-    } catch (err) {
-        console.log("ERROR, processSingup:", err);
-        res.send(err);
-    }
-};
 
 export default coffeeController;
