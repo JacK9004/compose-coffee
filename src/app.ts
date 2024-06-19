@@ -28,12 +28,10 @@ app.use(
         cookie: {
             maxAge: 1000 * 3600 *3,  // 3 hour
         },
-        store:  store,
-        resave: true,
+        store: store,
+        resave: true,       // 10:30 auth 13:30 if 12:00 => 15:00
         saveUninitialized: true,
-
     })
-  
 );
 
 /** 3-VIEWS **/
