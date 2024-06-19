@@ -41,6 +41,15 @@ routerAdmin.post(
     );
 
 /** User */
-routerAdmin.get("/user/all", coffeeController.verifyRestaurant, coffeeController.getUsers)
+routerAdmin.get(
+    "/user/all", 
+    coffeeController.verifyRestaurant, 
+    coffeeController.getUsers
+);
+routerAdmin.post(
+    "/user/edit", 
+    coffeeController.verifyRestaurant, 
+    coffeeController.updateChosenUser
+);
   
 export default routerAdmin;
