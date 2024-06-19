@@ -11,8 +11,8 @@ routerAdmin
     .get("/signup", coffeeController.getSignup)
     .post("/signup", coffeeController.processSignup);
 
-    routerAdmin
-    .get("/check-me", coffeeController.checkAuthSession);
+routerAdmin.get("/logout", coffeeController.logout)
+routerAdmin.get("/check-me", coffeeController.checkAuthSession);
 
 /** Product */
 /** User */
