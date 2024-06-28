@@ -12,7 +12,7 @@ class MemberService {
         this.memberModel = MemberModel
     }
 
-/** SPA */
+/** SPA (SINGLE PAGE APPLICATION FOR BURAK-REACT)*/
 
 public async signup(input: MemberInput): Promise<Member> {
     
@@ -61,8 +61,20 @@ public async signup(input: MemberInput): Promise<Member> {
         // return result;
     }
 
+    public async getMemberDetail(member: Member): Promise<Member> {
+        const memberId = shapeIntoMongooseObjectId(member._id);
+        const result = await this.memberModel
+            .findOne({ _id: memberId, memberStatus: MemberStatus.ACTIVE })
+            .exec();
+        if (!result) throw new Errors(HttpCode.NON_FOUND, Message.NO_DATA_FOUND);
+        
+        return result;
+    }
+
+
+
     
-/** SSR */
+/**  SSR (SERVER SIDE RENDERING FOR BURAK ADMIN PROJECT )*/ 
 
     public async processSignup(input: MemberInput): Promise<Member> {
     const exist = await this.memberModel
