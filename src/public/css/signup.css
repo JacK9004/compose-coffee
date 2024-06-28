@@ -6,10 +6,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  animation: gradient 15s ease infinite;
-  -webkit-animation: gradient 15s ease infinite;
-  background-size: 200% 200%;
+  background: url("/img/loginbackend.jpg");
+  background-size: 100%;
 }
 
 .signup-container a {
@@ -18,13 +16,14 @@
 }
 
 .signup-container .signup-frame {
+  margin-bottom: 500px;
   position: relative;
-  width: 420px;
+  width: 820px;
   height: auto;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  background: #ffffff;
+  background: white;
   padding: 25px;
 }
 

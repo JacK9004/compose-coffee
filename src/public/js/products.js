@@ -1,16 +1,17 @@
 console.log("Products frontend javascript file");
 
-// $(function () {
-//     $(".product-collection").on("change", () => {
-//         const selectedValue = $(".product-collection").val();
-//         if (selectedValue === "COFFEE") {
-//             $(".product-collection").hide(); 
-//             $(".product-volume").show(); 
-//         } else {
-//             $(".product-volume").hide(); 
-//             $(".product-collection").show(); 
-//         }
-//     });
+$(function () {
+    $(".product-collection").on("change", () => {
+        const selectedValue = $(".product-collection").val();
+        if (selectedValue === "DESSERT") {
+            // $(".product-collection").hide(); 
+            $(".product-volume").hide(); 
+        } else if (selectedValue === "COFFEE " || selectedValue === "TEA" || selectedValue === "JUICE") {
+           
+            $(".product-volume").show(); 
+        }
+    });
+});
 
     $("#process-btn").on("click", () => {
         $(".dish-container").slideToggle(500); 
