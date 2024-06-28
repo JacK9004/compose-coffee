@@ -14,6 +14,17 @@ class MemberService {
 
 /** SPA (SINGLE PAGE APPLICATION FOR BURAK-REACT)*/
 
+public async getCoffee(): Promise<Member> {
+    const result = await this.memberModel
+        .findOne({ memberType: MemberType.COFFEE})
+        .lean()
+        .exec();
+        // result.target = "Test"; (example for add database)
+    if (!result) throw new Errors(HttpCode.NON_FOUND, Message.NO_DATA_FOUND);
+
+    return result;
+}
+
 public async signup(input: MemberInput): Promise<Member> {
     
     // console.log("before:", input.memberPassword);
