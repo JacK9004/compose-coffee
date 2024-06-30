@@ -43,8 +43,7 @@ const productSchema = new Schema(
 
         productVolume: {
             type: String,
-            enum: ProductVolume,
-            default: ProductVolume.HOT,
+            enum: ProductVolume,         
         },
 
         productDesc: {

@@ -1,16 +1,23 @@
 console.log("Products frontend javascript file");
 
 $(function () {
-    $(".product-collection").on("change", () => {
+    // Function to handle the change event of product-collection
+    function handleProductCollectionChange() {
         const selectedValue = $(".product-collection").val();
         if (selectedValue === "DESSERT") {
-            // $(".product-collection").hide(); 
-            $(".product-volume").hide(); 
-        } else if (selectedValue === "COFFEE " || selectedValue === "TEA" || selectedValue === "JUICE") {
-           
-            $(".product-volume").show(); 
+            // Hide and disable the product-volume select element
+            $("#product-volume").hide().find("select").prop("disabled", true).val(null);
+        } else {
+            // Show and enable the product-volume select element
+            $("#product-volume").show().find("select").prop("disabled", false);
         }
-    });
+    }
+
+    // Initial check on page load
+    handleProductCollectionChange();
+
+    // Event listener for changes in the product-collection
+    $(".product-collection").on("change", handleProductCollectionChange);
 });
 
     $("#process-btn").on("click", () => {
