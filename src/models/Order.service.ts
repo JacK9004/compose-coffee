@@ -101,7 +101,7 @@ class OrderService {
         },
       ])
       .exec();
-    if (result.length === 0)
+    if (!result)
       throw new Errors(HttpCode.NON_FOUND, Message.NO_DATA_FOUND);
 
     return result;
